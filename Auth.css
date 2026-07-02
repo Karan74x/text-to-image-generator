@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+:root {
+  --color-primary: #5C56E1;
+  --color-accent: #8B5CF6;
+  --color-card: #FFFFFF;
+  --color-input: #F1F1FF;
+  --color-text: #09090E;
+  --color-placeholder: #5C5A87;
+  --color-border: #D4D4ED;
+  --color-gradient: linear-gradient(135deg, #5C56E1, #8B5CF6);
+}
+
+
+body.dark {
+  --color-card: #21214c;
+  --color-input: #1f1f2e;
+  --color-text: #e6e6f4;
+  --color-placeholder: #7f7fb2;
+  --color-border: #34344a;
+  --color-primary: #7d67ff;
+  --color-accent: #9b78ff;
+  --color-gradient: linear-gradient(135deg, #7b6dff, #b48aff);
+  background: linear-gradient(#364168, #2d335b);
+  transition: background 0.3s ease;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(#E9E9FF, #C8C7FF);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  transition: 0.3s ease;
+}
+
+.auth-container {
+  width: 420px;
+  padding: 32px;
+}
+
+.auth-card {
+  position: relative;
+  background: var(--color-card);
+  padding: 35px;
+  border-radius: 22px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+  text-align: center;
+  overflow: hidden;
+  animation: fadeIn 0.4s ease;
+  transition: 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: var(--color-gradient);
+  border-top-left-radius: 22px;
+  border-top-right-radius: 22px;
+}
+
+.logo {
+  height: 60px;
+  width: 60px;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  border-radius: 16px;
+  background: var(--color-gradient);
+  color: #fff;
+}
+
+h2 {
+  margin-bottom: 5px;
+  color: var(--color-text);
+}
+
+.subtitle {
+  margin-bottom: 25px;
+  color: var(--color-placeholder);
+  font-size: 0.95rem;
+}
+
+
+
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 6px;
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background: var(--color-input);
+  color: var(--color-text);
+  margin-bottom: 18px;
+  transition: 0.25s;
+}
+
+input::placeholder {
+  color: var(--color-placeholder);
+}
+
+input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
+  outline: none;
+}
+
+
+.auth-btn {
+  width: 100%;
+  padding: 12px;
+  background: var(--color-gradient);
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.auth-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(109,40,217,0.25);
+}
+
+.toggle {
+  margin-top: 18px;
+  font-size: 0.9rem;
+  color: var(--color-placeholder);
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.toggle span {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.toggle:hover {
+  color: var(--color-text);
+}
+
+
+.theme-toggle {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: var(--color-accent);
+  background: var(--color-input);
+  border: 1px solid var(--color-border);
+  transition: 0.25s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+}
+
+body.dark input,
+body.dark textarea,
+body.dark select {
+  background: var(--color-input);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+body.dark input::placeholder {
+  color: var(--color-placeholder);
+}
+
+body.dark .auth-card {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+}
+
+body.dark .auth-btn {
+  background: linear-gradient(135deg, #6d61ff, #a88bff);
+}
+
+body.dark .toggle {
+  color: #b3b3d9;
+}
+
+body.dark .toggle span {
+  color: #b28bff;
+}
+
+body.dark .auth-card::before {
+  background: linear-gradient(135deg, #7a66ff, #b28bff);
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

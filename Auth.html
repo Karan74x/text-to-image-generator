@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login / Register</title>
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card" id="loginBox">
+            <div class="logo"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h2>Welcome Back</h2>
+            <p class="subtitle">Login to continue</p>
+                 <div class="theme-toggle" onclick="toggleTheme()">
+                    <i class="fa-solid fa-gear"></i>
+                </div>
+            <label>Email</label>
+            <input id="loginEmail" type="email" placeholder="Enter your email" required />
+
+            <label>Password</label>
+            <input id="loginPassword" type="password" placeholder="Enter your password" required />
+
+            <button class="auth-btn" onclick="loginUser()">Login</button>
+
+            <div class="toggle" onclick="toggleForm()">
+                Don't have an account? <span>Register</span>
+            </div>
+        </div>
+
+        <!-- ---------------------- REGISTER CARD ---------------------- -->
+        <div class="auth-card" id="registerBox" style="display:none;">
+            <div class="logo"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h2>Create Account</h2>
+            <p class="subtitle">Join the magic</p>
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <i class="fa-solid fa-gear"></i>
+                </div>
+            <label>Email</label>
+            <input id="regEmail" type="email" placeholder="Enter your email" required />
+
+            <label>Password</label>
+            <input id="regPassword" type="password" placeholder="Create a password" required />
+
+            <label>Confirm Password</label>
+            <input id="regConfirm" type="password" placeholder="Confirm your password" required />
+
+            <button class="auth-btn" onclick="registerUser()">Register</button>
+
+            <div class="toggle" onclick="toggleForm()">
+                Already have an account? <span>Login</span>
+            </div>
+        </div>
+    </div>
+<script>
+/* ======================================================
+   TOGGLE LOGIN / REGISTER
+====================================================== */
+function toggleForm() {
+    const loginBox = document.getElementById("loginBox");
+    const registerBox = document.getElementById("registerBox");
+
+    loginBox.style.display = loginBox.style.display === "none" ? "block" : "none";
+    registerBox.style.display = registerBox.style.display === "none" ? "block" : "none";
+}
+
+/* ======================================================
+   REGISTER USER
+====================================================== */
+function registerUser() {
+    const email = document.getElementById("regEmail").value;
+    const password = document.getElementById("regPassword").value;
+    const confirm = document.getElementById("regConfirm").value;
+
+    if (!email || !password || !confirm) {
+        alert("All fields required");
+        return;
+    }
+
+    if (password !== confirm) {
+        alert("Passwords do not match!");
+        return;
+    }
+
+    localStorage.setItem("auth_email", email);
+    localStorage.setItem("auth_password", password);
+
+    alert("Registration successful! Please login.");
+    toggleForm();
+}
+
+/* ======================================================
+   LOGIN USER
+====================================================== */
+function loginUser() {
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    const storedEmail = localStorage.getItem("auth_email");
+    const storedPassword = localStorage.getItem("auth_password");
+
+    if (email === storedEmail && password === storedPassword) {
+        alert("Login successful!");
+        window.location.href = "index.html";
+    } else {
+        alert("Invalid email or password");
+    }
+}
+
+/* ======================================================
+   DARK MODE LOGIC
+====================================================== */
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+
+    localStorage.setItem(
+        "theme",
+        document.body.classList.contains("dark") ? "dark" : "light"
+    );
+}
+
+/* Load saved theme */
+window.onload = () => {
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+    }
+};
+</script>
+</body>
+</html>
